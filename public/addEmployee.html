@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Employee</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <div class="wrapper">
+
+        <!-- ----- left ------ -->
+        <div class="authentication">
+            <form action="#">
+                <div class="brand">
+                    <img src="./img/logo.png" alt="logo">
+                </div>
+                <div class="error">
+                    <span class="error-message"> </span>
+                </div>
+                <div class="form-group" id="new_entry">
+                    <div class="input-group">
+                        <label for="name"></label>
+                        <input type="text" name="name" id="name" placeholder="Enter new employee name">
+                        <label for="email"></label>
+                        <input type="email" name="email" id="email" placeholder="Enter new employee email">
+                        <label for="job_title"></label>
+                        <input type="text" name="job_title" id="job_title" placeholder="Enter new employee role">
+
+                    </div>
+                    <div class="input-group">
+                        <button class="submit" type="button"> submit</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <!-- ----- right------ -->
+        <div class="wallpaper"> </div>
+
+    </div>
+
+    <script>
+        const form = document.getElementById('new_entry');
+        const nameInput = document.querySelector('input#name')
+        const emailInput = document.querySelector('input#email')
+        const jobTitleInput = document.querySelector('input#job_title')
+        const btn = document.querySelector('.submit')
+
+        btn.addEventListener('click', async (e) => {
+            e.preventDefault();
+
+
+            //values of fields
+            const name = nameInput.value;
+            const email = emailInput.value;
+            const job_title = jobTitleInput.value
+
+            const url = 'http://localhost:7070/api/employee'
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(
+                        {
+                            name: name,
+                            email: email,
+                            job_title: job_title
+                        }
+
+                    )
+                }) // fetch ends here 
+
+                if (response.status === 200) {
+                    alert('employee created successfuly')
+
+                   
+                }
+                
+            } catch (error) {
+                console.error('Error:', error);
+                alert('an error occurred while creating the employee');
+                
+            }
+            window.location.href = `./dashboard.html`;
+        })
+    </script>
+</body>
+
+</html>

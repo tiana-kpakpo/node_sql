@@ -1,0 +1,12 @@
+# GET http://localhost:7070/api/employees
+
+# PATCH http://localhost:7070/api/employee/id
+# {
+#     "job_title": "Civil ENGINEER",
+#     "id": 1
+# }
+
+POST http://localhost:5000/api/items
+{
+    "item" : "to was my hair"
+}

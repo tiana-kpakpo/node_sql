@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="./register.css">
+</head>
+<div class="wrapper">
+
+    <!-- ----- left ------ -->
+    <div class="authentication">
+        <form action="#">
+            <div class="brand">
+                <img src="./img/logo.png" alt="logo">
+            </div>
+            <div class="error">
+                <span class="error-message"> </span>
+            </div>
+            <div class="success-message" id="success-message" style="display: none;">
+                <span class="successMessage"> </span>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <label for="name"></label>
+                    <input type="name" name="name" id="name" placeholder="Enter your name">
+                    <label for="password"></label>
+                    <label for="email"></label>
+                    <input type="email" name="email" id="email" placeholder="Enter your email">
+                    <label for="password"></label>
+                    <input type="password" name="password" id="password" placeholder="password">
+                    <label for="password_confirm"></label>
+                    <input type="password" name="password_confirm" id="password_confirm" placeholder="password_confirm">
+                </div>
+                <div class="input-group">
+                    <button type="button"> sign up </button>
+                </div>
+            </div>
+
+            <small> login <a href="./index.html"> here</a> </small>
+
+        </form>
+    </div>
+    <!-- ----- right------ -->
+    <div class="wallpaper"> </div>
+
+</div>
+<script src="./jquery.min.js"></script>
+<script src="./app.js"></script>
+<!-- <script> 
+    const signUpButton = document.querySelector("button[type='button']");
+    signUpButton.addEventListener('click', async function (e) {
+        e.preventDefault();
+  console.log('clicked')
+        //selectors
+
+        const name = document.querySelector("#name");
+        const email = document.querySelector("#email");
+        const password = document.querySelector("#password");
+        const confirmPassword = document.querySelector("#password_confirm");
+        const error = document.querySelector('form .error');
+        const message = document.querySelector('form .error .error-message');
+
+
+        // checking if fields are filled
+        if (name.value == '' || name.value == null || email.value == '' || email.value == null || password.value == '' || password.value == null || confirmPassword.value == '' || confirmPassword.value == null) {
+            $(error).fadeIn('slow');
+            $(message).text('field cannot be empty');
+
+            // remove error message after 3 seconds
+            setTimeout(() => {
+                $(error).fadeOut('slow');
+            }, 2000);
+            return;
+
+            // Checking if passwords match
+            if (password.value !== confirmPassword.value) {
+                $(error).fadeIn('slow');
+                $(message).text('Passwords do not match');
+
+                // Remove error message after 3 seconds
+                setTimeout(() => {
+                    $(error).fadeOut('slow');
+                }, 2000);
+                return;
+            } else {
+                alert(email.value)
+
+                //making the fetch request
+
+                const result = await fetch('http://localhost:7070/api/user', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: name.value,
+                        email: email.value,
+                        password: password.value
+                    })
+                }) //fetch ends here
+
+                //check http status
+                if (result.status != 200) {
+                    //get message from response
+                    const response = await result.json();
+                    $(error).fadeIn('slow');
+                    $(message).text(response.message);
+
+                    // remove error message after 3 seconds
+                    setTimeout(() => {
+                        $(error).fadeOut('slow');
+                    }, 3000);
+
+                    return;
+                }
+                console.log(result)
+
+                if (result.status == 200) {
+                    //getting user back from server
+
+                    const response = await result.json();
+                    let name = response.name;
+                    let token = response.token;
+
+                    //clear previous storage
+                    localStorage.setItem('name', '');
+                    localStorage.setItem('tokenkey', '');
+
+
+                    //set new storage
+                    localStorage.setItem('name', name);
+                    localStorage.setItem('tokenKey', token);
+
+                    window.location.href = `./dashboard.html?name=${name}`;
+
+                }
+
+            }
+
+        }})
+</script>  -->
+<script>
+
+    const signUpButton = document.querySelector("button[type='button']");
+    signUpButton.addEventListener('click', async function (e) {
+        e.preventDefault();
+        console.log('clicked')
+
+        //selectors
+        const name = document.querySelector("#name");
+        const email = document.querySelector("#email");
+        const password = document.querySelector("#password");
+        const confirmPassword = document.querySelector("#password_confirm");
+        const error = document.querySelector('form .error');
+        const message = document.querySelector('form .error .error-message');
+
+        // Checking if fields are filled
+        if (name.value == '' || name.value == null || email.value == '' || email.value == null || password.value == '' || password.value == null || confirmPassword.value == '' || confirmPassword.value == null) {
+            $(error).fadeIn('slow');
+            $(message).text('Field cannot be empty');
+
+            // Remove error message after 3 seconds
+            setTimeout(() => {
+                $(error).fadeOut('slow');
+            }, 2000);
+            return;
+        }
+
+        // Checking if passwords match
+        if (password.value !== confirmPassword.value) {
+            $(error).fadeIn('slow');
+            $(message).text('Passwords do not match');
+
+            // Remove error message after 3 seconds
+            setTimeout(() => {
+                $(error).fadeOut('slow');
+            }, 2000);
+            return;
+        }
+
+        // Making the fetch request
+        const result = await fetch('http://localhost:7070/api/user', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: name.value,
+                email: email.value,
+                password: password.value
+            })
+        }); //fetch ends here
+
+        // Check http status
+        if (result.status != 200) {
+            // Get message from response
+            const response = await result.json();
+            $(error).fadeIn('slow');
+            $(message).text(response.message);
+
+            console.log(response)
+
+            // Remove error message after 3 seconds
+            setTimeout(() => {
+                $(error).fadeOut('slow');
+            }, 3000);
+
+            return;
+        }
+
+        if (result.status == 200) {
+            // Getting user back from server
+            const response = await result.json();
+            let name = response.name;
+            let token = response.token;
+
+            // Clear previous storage
+            localStorage.setItem('name', '');
+            localStorage.setItem('tokenkey', '');
+
+            // Set new storage
+            localStorage.setItem('name', name);
+            localStorage.setItem('tokenKey', token);
+
+            // Display success message
+            const successMessage = document.getElementById('success-message');
+            successMessage.textContent = 'User created successfully, login';
+            successMessage.style.display = 'block';
+
+            // Redirect to the dashboard after a delay (if needed)
+            setTimeout(() => {
+                window.location.href = `./dashboard.html?name=${name}`;
+            }, 3000); // Redirect after 3 seconds
+
+            // window.location.href = `./index.html`;
+        }
+    });
+
+
+
+</script>
+</body>
+
+</html>
+
+
+</body>
+
+</html>
