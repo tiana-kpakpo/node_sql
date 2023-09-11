@@ -132,9 +132,9 @@
             </div>
         </div>
 
-        <div class="todo_list">
+        <!-- <div class="todo_list">
 
-        </div>
+        </div> -->
 
     </div>
 
@@ -166,6 +166,27 @@
 
             })
 
+            //deleting completed items
+
+            function deleteItem(itemId) {
+                fetch(`http://localhost:4000/api/item/${itemId}`, {
+                    method: 'DELETE'
+                })
+                    .then((response) => {
+                        if (response == 200) {
+                            const todoElement = document.querySelector(`[data-id = '${itemId}']`)
+                            if (todoElement) {
+                                todoElement.remove();
+                            }
+                        } else {
+                            console.error('failed')
+                        }
+                    }).catch((error) => {
+                        console.error('error')
+
+                    })
+            }
+
 
 
             const deleteButtons = document.querySelectorAll('.delete');
@@ -185,11 +206,6 @@
                     }
                 });
             });
-
-
-
-
-
         })
 
 
@@ -221,7 +237,7 @@
                 const response = await result.json();
                 console.log(response)
 
-                //showing item on the page
+                //showing item on the page 
 
                 response.forEach(items => {
 
