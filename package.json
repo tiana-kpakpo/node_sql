@@ -2,9 +2,9 @@
   "name": "node_sql",
   "version": "1.0.0",
   "description": "nodejs application connected to an sql database",
-  "main": "index.js",
+  "main": "todo.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon todo.js"
   },
   "keywords": [],
   "author": "",

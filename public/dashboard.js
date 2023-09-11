@@ -1,36 +1,3 @@
- // Function to parse query parameters from the URL
-//  function getQueryParams() {
-//     const queryParams = {};
-//     const queryString = window.location.search.substring(1);
-//     const paramPairs = queryString.split('&');
-
-//     for (const pair of paramPairs) {
-//         const [key, value] = pair.split('=');
-//         queryParams[key] = decodeURIComponent(value);
-//     }
-
-//     return queryParams;
-// }
-
-// // Get query parameters from the URL
-// const queryParams = getQueryParams();
-
-// // Populate the table with the data
-// const nameElement = document.getElementById('name');
-// const emailElement = document.getElementById('email');
-// const jobTitleElement = document.getElementById('jobTitle');
-
-// if (queryParams.name) {
-//     nameElement.textContent = queryParams.name;
-// }
-
-// if (queryParams.email) {
-//     emailElement.textContent = queryParams.email;
-// }
-
-// if (queryParams.jobTitle) {
-//     job_titleElement.textContent = queryParams.job_title;
-// }
 
 window.addEventListener('load', () => {
 
