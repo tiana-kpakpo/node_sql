@@ -27,14 +27,14 @@
 
                     <img src="LoGo.png" alt="">
                 </div>
-               
+
                 <div class="close" id="close-btn">
                     <span class="material-icons-sharp">close</span>
                 </div>
             </div>
 
             <div class="sidebar">
-                <a href="#" class="active">
+                <a href="#">
 
                     <span class="material-symbols-sharp">
                         apps
@@ -50,11 +50,11 @@
                 </a>
 
 
-                <a href="#">
+                <a href="#" class="active">
                     <span class="material-symbols-sharp">
                         manage_accounts
                     </span>
-                    <h3>Profile</h3>
+                    <h3>Add Product</h3>
                 </a>
                 <a href="#">
                     <span class="material-symbols-sharp">
@@ -74,116 +74,57 @@
         <!-- ----------------end of aside------------ -->
 
         <main>
-            <h1>Dashboard</h1>
+            <h1>Add New Product</h1>
 
+            
             <div class="date">
                 <input type="date" id="currentDate">
             </div>
 
-            <div class="insights">
-
-                <div class="sales">
-                    <span class="material-icons-sharp">analytics </span>
-                    <div class="middle">
-                        <div class="left">
-                            <h3>Total Sales</h3>
-                            <h1>$25,023</h1>
+            <div class="container mt-4 w-75">
+                <form class="shadow-2xl rounded-2xl p-4">
+                    <div class="mb-3">
+                        <div class="flex justify-between items-center mx-auto w-full p-2">
+                            <label for="product name" class="mr-auto">Product name</label>
+                            <div></div>
                         </div>
-                        <div class="progress_bar">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-
-                            </svg>
-                            <div class="number">
-                                <p>81%</p>
-                            </div>
-                        </div>
+                        <input type="text" class="form-control" id="product name">
                     </div>
-
-                    <small class="text-muted">
-                        Last 24 Hours
-                    </small>
-                </div>
-                <!-- ------------------End of Sales --------------- -->
-
-                <div class="expenses">
-                    <span class="material-icons-sharp">bar_chart </span>
-                    <div class="middle">
-                        <div class="left">
-                            <h3>Total Expenses</h3>
-                            <h1>$18,023</h1>
+                    <div class="mb-3">
+                        <div class="flex justify-between items-center mx-auto w-full p-2">
+                            <label for="description" class="mr-auto">Description</label>
+                            <div></div>
                         </div>
-                        <div class="progress_bar">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-
-                            </svg>
-                            <div class="number">
-                                <p>62%</p>
-                            </div>
-                        </div>
+                        <input type="text" class="form-control" id="description">
                     </div>
-
-                    <small class="text-muted">
-                        Last 24 Hours
-                    </small>
-                </div>
-
-                <!-- -------------------End of Expenses------------- -->
-
-                <div class="income">
-                    <span class="material-icons-sharp">stacked_line_chart </span>
-                    <div class="middle">
-                        <div class="left">
-                            <h3>Total Income</h3>
-                            <h1>$15,023</h1>
+                    <div class="mb-3">
+                        <div class="flex justify-between items-center mx-auto w-full p-2">
+                            <label for="price" class="mr-auto">Price</label>
+                            <label for="price" class="mr-auto hidden">Price</label>
                         </div>
-                        <div class="progress_bar">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-
-                            </svg>
-                            <div class="number">
-                                <p>44%</p>
-                            </div>
-                        </div>
+                        <input type="number" class="form-control" id="price">
                     </div>
+                    <div class="mb-3">
+                        <div class="flex justify-between items-center mx-auto w-full p-2">
+                            <label for="stock" class="mr-auto">Stock</label>
+                            <label for="stock" class="mr-auto hidden">Stock</label>
 
-                    <small class="text-muted">
-                        Last 24 Hours
-                    </small>
-                </div>
+                        </div>
+                        <input type="number" class="form-control" id="stock">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="flex justify-between items-center mx-auto w-full p-2">
+                            <label for="image" class="mr-auto">Upload images</label>
+                            <div></div>
+                        </div>
+                        <input type="file" id="image">
+                    </div>
+                    <button type="button" class="btn btn-outline-success" style="margin-left: 50%;">Submit</button>
+                </form>
 
-                <!-- --------------------End of Income----------------- -->
             </div>
 
-            <h2 style="margin-bottom: 2rem; margin-top: 2rem;">Employee Details</h2>
-            <div class="btns" style="display: flex; column-gap: 28rem; margin-bottom: 1rem;">
-                <button
-                    class="create-employee - py-2 px-6 rounded-md shadow-2xl text-xl bg-green-600 hover:bg-green-400 text-white  ml-auto cursor-pointer">add
-                    employee </button>
-                <button
-                    class="register - py-2 px-6 rounded-md shadow-2xl text-xl bg-red-600 hover:bg-red-400 text-white  ml-auto cursor-pointer">register
-                    employee </button>
-            </div>
-            <div class="recent-order">
-                <table id="emp-table">
-                    <thead>
-                        <tr>
-                            <!-- <th>Job Title</th> -->
-                            <th>Job</th>
-                            <th>Employee Name</th>
-                            <th>Email</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody id="table_body">
 
-
-                    </tbody>
-                </table>
-                <a href="#">Show all</a>
-            </div>
         </main>
         <!-- -------------------- end of main ------------------- -->
 
@@ -213,7 +154,9 @@
 
             <!-- ---------------- end of recent updates ----------------- -->
             <div class="sales-analytics">
+
                 <h2> Sales Analytics</h2>
+
                 <div class="item online">
 
                     <div class="icon">
@@ -269,7 +212,7 @@
                 </div>
                 <div class="item add-product">
                     <div>
-                        <span class="material-icons-sharp">add </span>
+                        <span class="material-icons-sharp">add</span>
                         <h3> add product</h3>
                     </div>
                 </div>
@@ -277,27 +220,68 @@
         </div>
 
     </div>
+
+    <!-- <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const currentDateInput = document.getElementById('currentDate');
+            const today = new Date();
+
+            const year = today.getFullYear();
+            const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
+            const day = String(today.getDate()).padStart(2, '0');
+
+            const formattedDate = `${year}-${month}-${day}`;
+            currentDateInput.value = formattedDate;
+        });
+    </script> -->
+
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
-    <!-- bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
 
-    <script src="./main.js"> </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-    const currentDateInput = document.getElementById('currentDate');
-    const today = new Date();
+<script src="shop.js"></script>
 
-    const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
-    const day = String(today.getDate()).padStart(2, '0');
+    
 
-    const formattedDate = `${year}-${month}-${day}`;
-    currentDateInput.value = formattedDate;
-});
+    <!-- <script>
 
-    </script>
+        const uploadButton = document.querySelector("input[type=file]");
+
+        uploadButton.addEventListener("change", async (event) => {
+            try {
+
+                let fileImage = event.target.files[0];
+                if (!fileImage) {
+                    return alert("no file selected")
+                }
+
+                const formData = new FormData();
+                formData.append("image", fileImage);
+
+                let server = await fetch('http://localhost:7070/api/store-image', {
+                    method: 'POST',
+                    headers: {
+                        Accept: "application/octet-stream"
+                    },
+                    body: formData,
+                })
+
+                if (server.status == 200) {
+                    const response = await server.json()
+                    console.log(response.fileName)
+
+                    alert("success")
+
+
+                }
+            } catch (err) {
+                console.log(err)
+            }
+        });
+    </script> -->
+
+    
 </body>
 
 </html>

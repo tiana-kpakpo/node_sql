@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Employee </title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: var(--color-background);
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        img {
+            width: 9rem;
+            height: 6rem;
+            object-fit: cover;
+        }
+
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+
+        input[type="text"],
+        input[type="email"] {
+            top: 1rem;
+            width: 100%;
+            border: none;
+            border-bottom: 3px;
+            width: 100%;
+            height: 2.7rem;
+            outline: none;
+            border-radius: 8px;
+            padding: 0.1rem 1rem;
+            background-color: var(--color-warning-light);
+            display: flex;
+            row-gap: 0.5rem;
+            color: black;
+        }
+
+
+        button[type="submit"] {
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            background-color: white;
+            color: var(--color-primary-variant);
+            border: 2px solid #143056;
+            outline: #143056;
+            width: 100%;
+        }
+
+        button[type="submit"]:hover {
+            color: #4b71a6;
+            text-decoration: none;
+            font-weight: bold;
+            background-color: wheat;
+
+        }
+    </style>
+    <!-- <h1>Edit Employee Details </h1> -->
+    <div class="wrapper">
+        <form id="edit-form">
+            <img src="LoGo.png" alt="">
+            <label for="job"></label>
+            <input type="text" id="job" name="job" placeholder="new job title" required><br>
+
+            <label for="name"></label>
+            <input type="text" id="name" name="name" placeholder="name" required><br>
+
+            <label for="email"></label>
+            <input type="email" id="email" name="email" placeholder="email" required><br>
+
+            <a href="./dashboard.html"><button type="submit" id="scBtn">Save Changes</button></a>
+        </form>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const employeeId = urlParams.get('id');
+
+        const form = document.getElementById('edit-form');
+        const jobInput = document.getElementById('job');
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+
+        async function fetchEmployeeData() {
+            const url = `https://kojoyeboah53i-d962a2da663c.herokuapp.com/api/ordabl/employee/${employeeId}`;
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+
+
+                jobInput.value = data.job_title;
+                nameInput.value = data.name;
+                emailInput.value = data.email;
+            } catch (error) {
+                console.error('Error fetching employee data:', error);
+            }
+        }
+
+        fetchEmployeeData();
+
+        form.addEventListener('submit', async event => {
+            event.preventDefault();
+
+            const updatedData = {
+                job_title: jobInput.value,
+                name: nameInput.value,
+                email: emailInput.value
+            };
+
+            const updateUrl = `https://kojoyeboah53i-d962a2da663c.herokuapp.com/api/ordabl/update-employee/${employeeId}`;
+
+            try {
+                const response = await fetch(updateUrl, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(updatedData)
+                });
+
+                const result = await response.json();
+                console.log('Update response:', result);
+
+
+                const employeeConfirmed = confirm(`Are you sure you want to update employee ${employeeId}`);
+
+                if (!employeeConfirmed) {
+                    return; // Do nothing if the user cancels the confirmation
+                } else {
+                    
+                    window.location.href = './dashboard.html?refresh=true';
+                }
+            } catch (error) {
+                console.error('Error updating employee data:', error);
+            }
+        });
+    </script>
+
+    <script src="main.js"></script>
+
+</body>
+
+</html>

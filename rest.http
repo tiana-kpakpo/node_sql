@@ -6,4 +6,15 @@
 #     "id": 1
 # }
 
-DELETE  http://localhost:4000/api/item/10
+# DELETE  http://localhost:4000/api/item/10
+
+# POST http://localhost:7070/shop/v1/order
+# Content-Type: application/json
+
+# {
+#     "customer_id": 3,
+#     "price": 2000.00,
+#     "product":"bone straight 16inches"
+# }
+
+GET http://localhost:7070/shop/v1/orders

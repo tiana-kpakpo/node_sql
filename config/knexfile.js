@@ -5,12 +5,29 @@
  */
 module.exports = {
 
+  // development: {
+  //   client: 'sqlite3',
+  //   connection: {
+  //     filename: './dev.sqlite3'
+  //   },
+  //   useNullAsDefault: true, // Required for SQLite
+
+  // },
+
   development: {
-    client: 'sqlite3',
+    client: 'mysql',
+    
     connection: {
-      filename: './dev.sqlite3'
+      user: "root",
+      password: '',
+      port: 3306,
+      database: 'shopping',
+      host: '127.0.0.1'
     },
-    useNullAsDefault: true, // Required for SQLite
+
+    seeds: {
+      directory: './seed'
+    },
 
   },
 
