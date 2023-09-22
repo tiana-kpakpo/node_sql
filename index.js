@@ -15,6 +15,9 @@ const objection = require('./router/routes')
 
 const PORT = 7070;  //server port
 
+//storing products 
+const products = []
+
 // Set up multer storage and file filter
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -81,6 +84,13 @@ app.post('/product-upload', async (req, res) => {
       
   }
 });
+
+
+// route to get products for display
+app.get('/show-products', async(req, res) => {
+  // const uploadFolderPath = path.join(__dirname, './public/uploads/');
+  // res.sendFile(path.join(__dirname, 'store.html'));
+})
 
 //api
 app.use('/api', routes)
